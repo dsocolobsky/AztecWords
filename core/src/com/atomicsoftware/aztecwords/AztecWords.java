@@ -11,6 +11,9 @@ public class AztecWords extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+
+        Assets.load();
+
 		setScreen(new MenuScreen(this));
 	}
 
