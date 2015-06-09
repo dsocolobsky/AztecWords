@@ -52,6 +52,9 @@ public class Assets {
         soundoff = spritesheet.findRegion("soundoff");
         soundon = spritesheet.findRegion("soundon");
 
+        titulo = spritesheet.findRegion("titulo");
+        gameover = spritesheet.findRegion("gameover");
+
         corazon = spritesheet.findRegion("corazon");
         pozo = spritesheet.findRegion("pozo");
 
