@@ -1,0 +1,72 @@
+Class = require "hump.class"
+local anim8 = require 'anim8'
+
+Player = Class {
+  init = function(self, x, y, image)
+    self.x = x
+    self.y = y
+    self.image = image
+    
+    local g = anim8.newGrid(96, 140, image:getWidth(), image:getHeight())
+    self.run_animation = anim8.newAnimation(g('1-4', '1-2'), 0.1)
+  end,
+  
+  width = 96,
+  height = 140,
+  dy = 0,
+  state = "idle",
+  jumpingstate = "ascending",
+  speed = 160,
+  toppoint = 250,
+}
+
+function Player:reset()
+  self.dy = 0
+  self.state = "idle"
+  self.jumpingstate = "ascending"
+  self.speed = 160
+  self.x = 40
+  self.y = 380
+end
+
+function Player:update(dt)
+  self.run_animation:update(dt)
+  
+  if self.state == "falling" then
+    self:fall()
+  elseif self.state == "jumping" then
+    self:jump()
+  elseif self.state == "backing" then
+    self:reset()
+  end
+  
+  self.y = self.y + self.speed * self.dy * dt
+end
+
+function Player:draw()
+  self.run_animation:draw(self.image, self.x, self.y)
+end
+
+function Player:fall()
+  self.dy = 1
+    
+  if self.y >= 750 then
+    player:reset()
+  end
+end
+
+function Player:jump()
+  if self.jumpingstate == "ascending" then
+    self.dy = -1
+      
+    if self.y <= self.toppoint then
+      self.jumpingstate = "descending"
+    end
+  else
+    self.dy = 1
+      
+    if self.y >= 380 then
+      self.state = "backing"
+    end
+  end
+end
