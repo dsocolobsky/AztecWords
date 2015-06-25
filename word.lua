@@ -55,18 +55,20 @@ function Word:draw()
 end
 
 function Word:akey(key)
-  if key == self.letters[self.current].str then
-    self.letters[self.current].status = 1
+  if self.status == 0 then
+    if key == self.letters[self.current].str then
+      self.letters[self.current].status = 1
     
-    if self.letters[self.current + 1] == nil then
-      self.status = 1
-    end
-  else
-    self.status = -1
-    for _,v in pairs(self.letters) do
-      v.status = -1
+      if self.letters[self.current + 1] == nil then
+        self.status = 1
+      end
+    else
+      self.status = -1
+      for _,v in pairs(self.letters) do
+        v.status = -1
+      end
     end
   end
-  
+
   self.current = self.current + 1
 end
