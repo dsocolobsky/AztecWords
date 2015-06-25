@@ -50,8 +50,9 @@ end
 function Player:fall()
   self.dy = 1
     
-  if self.y >= 750 then
-    player:reset()
+  if self.y >= 850 then
+    self:reset()
+    self.state = "reset"
   end
 end
 
@@ -66,7 +67,8 @@ function Player:jump()
     self.dy = 1
       
     if self.y >= 380 then
-      self.state = "backing"
+      self:reset()
+      self.state = "reset"
     end
   end
 end

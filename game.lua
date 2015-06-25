@@ -1,3 +1,4 @@
+require("background")
 require("obstacle")
 require("player")
 require("word")
@@ -6,7 +7,7 @@ Gamestate = require "hump.gamestate"
 game = {}
 
 function game:init()
-  self.background_image = loadImage("background")
+  self.background = Background(loadImage("background"))
   self.hud_image = loadImage("hud")
   
   self.pozo_image = loadImage("pozo")
@@ -29,35 +30,35 @@ function game:update(dt)
   if self.obstacle ~= nil then
     self.obstacle:update(dt)
     
-    if self.obstacle:isNear() then
-      self.obstacle:stop()
-      
+    if self.obstacle:isNear() and self.player.state ~= "reset" then
       if self.word.status == 1 then
         self.player.state = "jumping"
-        self.obstacle:continue()
       else
-        if self.obstacle.speed ~= 0 then
+        if (self.obstacle.x - 40) <= self.player.x then
           self.player.state = "falling"
-          self.obstacle:continue()
-          self.obstacle:stopplayer()
-          
-          if self.player.state == "idle" then
-            self.obstacle:continue()
-          end
+          self.obstacle:stop()
         end
       end
     end
     
-    if self.obstacle.x+175 < 0 then
-      self.obstacle = spawn_obstacle()
-      self.word = nil
-      self.word = get_word(self.lines)
+    if self.player.state == "reset" then
+      game.obstacle:continue()
+      if self.obstacle.x+175 < 0 then
+        self.obstacle = spawn_obstacle()
+        self.word = nil
+        self.word = get_word(self.lines)
+        self.player.state = "idle"
+      end
     end
+  end
+  
+  if self.player.state ~= "falling" then
+    self.background:update(dt)
   end
 end
 
 function game:draw()
-  love.graphics.draw(self.background_image, 0, 0)
+  self.background:draw()
   
   self.player:draw()
   
@@ -89,7 +90,6 @@ function load_file(level)
   
   for line in io.lines(fname) do
     ln[#ln + 1] = line
-    print(line)
   end
   
   return ln
