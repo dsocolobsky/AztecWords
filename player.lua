@@ -49,8 +49,12 @@ end
 
 function Player:fall()
   self.dy = 1
+  
+  if self.y >= 650 then
+    game.obstacle:continue()
+  end
     
-  if self.y >= 850 then
+  if self.y >= 920 then
     self:reset()
     self.state = "reset"
   end

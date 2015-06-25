@@ -43,7 +43,7 @@ function game:update(dt)
     
     if self.player.state == "reset" then
       game.obstacle:continue()
-      if self.obstacle.x+175 < 0 then
+      if self.obstacle.x < -175 then
         self.obstacle = spawn_obstacle()
         self.word = nil
         self.word = get_word(self.lines)
