@@ -9,6 +9,7 @@ Player = Class {
     
     local g = anim8.newGrid(96, 140, image:getWidth(), image:getHeight())
     self.run_animation = anim8.newAnimation(g('1-4', '1-2'), 0.1)
+    self.jump_animation = anim8.newAnimation(g(2, 2), 1)
   end,
   
   width = 96,
@@ -44,7 +45,11 @@ function Player:update(dt)
 end
 
 function Player:draw()
-  self.run_animation:draw(self.image, self.x, self.y)
+  if self.dy == 0 then
+    self.run_animation:draw(self.image, self.x, self.y)
+  else
+    self.jump_animation:draw(self.image, self.x, self.y)
+  end
 end
 
 function Player:fall()
