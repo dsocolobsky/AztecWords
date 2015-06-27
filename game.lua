@@ -22,7 +22,9 @@ function game:init()
   self.jumpsound = love.audio.newSource("assets/audio/jump.ogg", "static")
   self.diesound = love.audio.newSource("assets/audio/scream.ogg", "static")
   self.music = love.audio.newSource("assets/audio/music.ogg")
-  
+end
+
+function game:enter()
   self.lines = load_file(1)
   self.word = get_word(self.lines)
   

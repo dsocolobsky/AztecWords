@@ -5,6 +5,7 @@ Obstacle = Class {
     self.x = x
     self.y = y
     self.image = image
+    self.hidden = false
   end,
   
   width = 173,
@@ -17,7 +18,9 @@ function Obstacle:update(dt)
 end
 
 function Obstacle:draw()
-  love.graphics.draw(self.image, self.x, self.y)
+  if self.hidden ~= true then
+    love.graphics.draw(self.image, self.x, self.y)
+  end
 end
 
 function Obstacle:isNear()
@@ -29,6 +32,7 @@ function Obstacle:stop()
 end
 
 function Obstacle:continue()
+  self.hidden = true
   self.speed = 200
 end
 

@@ -13,6 +13,7 @@ function love.load()
 	Gamestate.switch(menu)
 
 	love.window.setMode(1024, 768)
+  love.window.setTitle("Aztec Words")
 end
 
 function loadImage(filename)
