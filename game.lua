@@ -12,6 +12,8 @@ function game:init()
   
   self.pozo_image = loadImage("pozo")
   
+  self.corazon = loadImage("corazon")
+  
   self.font = love.graphics.newFont("assets/data/consolas.ttf", 48)
   love.graphics.setFont(self.font)
   
@@ -68,6 +70,17 @@ function game:draw()
   
   if self.obstacle ~= nil then
     self.obstacle:draw()
+  end
+  
+  if self.player.vidas == 3 then
+    love.graphics.draw(self.corazon, 940-140, 33)
+    love.graphics.draw(self.corazon, 940-70, 33)
+    love.graphics.draw(self.corazon, 940, 33)
+  elseif self.player.vidas == 2 then
+    love.graphics.draw(self.corazon, 940-70, 33)
+    love.graphics.draw(self.corazon, 940, 33)
+  else
+    love.graphics.draw(self.corazon, 940, 33)
   end
 end
 

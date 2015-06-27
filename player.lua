@@ -19,6 +19,7 @@ Player = Class {
   jumpingstate = "ascending",
   speed = 160,
   toppoint = 250,
+  vidas = 3,
 }
 
 function Player:reset()
@@ -62,6 +63,7 @@ function Player:fall()
   if self.y >= 920 then
     self:reset()
     self.state = "reset"
+    self.vidas = self.vidas - 1
   end
 end
 
