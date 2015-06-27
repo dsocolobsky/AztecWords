@@ -23,6 +23,8 @@ function game:init()
   self.player = Player(40, 380, loadImage("player"))
   
   self.obstacle = spawn_obstacle()
+  
+  self.puntos = 0
 end
 
 function game:update(dt)
@@ -56,6 +58,8 @@ function game:update(dt)
   
   if self.player.state ~= "falling" then
     self.background:update(dt)
+    
+    self.puntos = self.puntos + dt
   end
 end
 
@@ -82,6 +86,8 @@ function game:draw()
   else
     love.graphics.draw(self.corazon, 940, 33)
   end
+  
+  love.graphics.print(math.floor(self.puntos), 78, 20)
 end
 
 function game:keypressed(key)
