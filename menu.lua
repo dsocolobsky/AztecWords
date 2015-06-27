@@ -1,6 +1,8 @@
 Gamestate = require "hump.gamestate"
 menu = {}
 
+soundactivated = true
+
 function menu:init()
 	-- Fondo del menu
 	self.background = loadImage("menu")
@@ -36,7 +38,7 @@ function menu:mousepressed(x, y, button)
     love.event.quit()
   elseif self.botonsonido.hovered then
     self.botonsonido:activate()
-    sound = not sound
+    soundactivated = not soundactivated
   elseif self.botonventana.hovered then
     self.botonventana:activate()
     fullscreen, fstype = love.window.getFullscreen()

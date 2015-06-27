@@ -10,6 +10,8 @@ Player = Class {
     local g = anim8.newGrid(96, 140, image:getWidth(), image:getHeight())
     self.run_animation = anim8.newAnimation(g('1-4', '1-2'), 0.1)
     self.jump_animation = anim8.newAnimation(g(2, 2), 1)
+    
+    self.vidas = 3
   end,
   
   width = 96,
@@ -19,7 +21,6 @@ Player = Class {
   jumpingstate = "ascending",
   speed = 160,
   toppoint = 250,
-  vidas = 3,
 }
 
 function Player:reset()
@@ -63,6 +64,7 @@ function Player:fall()
   if self.y >= 920 then
     self:reset()
     self.state = "reset"
+    
     self.vidas = self.vidas - 1
   end
 end

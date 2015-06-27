@@ -1,4 +1,5 @@
 require("background")
+require("gameover")
 require("obstacle")
 require("player")
 require("word")
@@ -17,6 +18,11 @@ function game:init()
   self.font = love.graphics.newFont("assets/data/consolas.ttf", 48)
   love.graphics.setFont(self.font)
   
+  -- Sonidos
+  self.jumpsound = love.audio.newSource("assets/audio/jump.ogg", "static")
+  self.diesound = love.audio.newSource("assets/audio/scream.ogg", "static")
+  self.music = love.audio.newSource("assets/audio/music.ogg")
+  
   self.lines = load_file(1)
   self.word = get_word(self.lines)
   
@@ -25,6 +31,8 @@ function game:init()
   self.obstacle = spawn_obstacle()
   
   self.puntos = 0
+  
+  self.playedsound = false
 end
 
 function game:update(dt)
@@ -37,8 +45,17 @@ function game:update(dt)
     if self.obstacle:isNear() and self.player.state ~= "reset" then
       if self.word.status == 1 then
         self.player.state = "jumping"
+        
+        if soundactivated and not playedsound then
+            game.jumpsound:play()
+            playedsound = true
+          end
       else
         if (self.obstacle.x - 40) <= self.player.x then
+          if soundactivated and not playedsound then
+            game.diesound:play()
+            playedsound = true
+          end
           self.player.state = "falling"
           self.obstacle:stop()
         end
@@ -46,6 +63,8 @@ function game:update(dt)
     end
     
     if self.player.state == "reset" then
+      playedsound = false
+      
       game.obstacle:continue()
       if self.obstacle.x < -175 then
         self.obstacle = spawn_obstacle()
@@ -60,6 +79,14 @@ function game:update(dt)
     self.background:update(dt)
     
     self.puntos = self.puntos + dt
+  end
+  
+  if self.player.vidas <= 0 then
+    Gamestate.switch(gameover)
+  end
+  
+  if soundactivated then
+    self.music:play()
   end
 end
 
