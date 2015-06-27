@@ -15,7 +15,7 @@ function game:init()
   
   self.corazon = loadImage("corazon")
   
-  self.font = love.graphics.newFont("assets/data/consolas.ttf", 48)
+  self.font = love.graphics.newFont("assets/data/luximr.ttf", 48)
   love.graphics.setFont(self.font)
   
   -- Sonidos
