@@ -1,0 +1,9 @@
+espada
+caballo
+colegio
+provincia
+dinero
+bandera
+payaso
+cuaderno
+oracion

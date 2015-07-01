@@ -8,8 +8,9 @@ Gamestate = require "hump.gamestate"
 game = {}
 
 function game:init()
-  self.background = Background(loadImage("background"))
-  self.hud_image = loadImage("hud")
+  self.background = Background(loadImage("back1"), loadImage("back2"), loadImage("back3"),
+    loadImage("back4"))
+  self.hud_image = loadImage("nuevohud")
   
   self.pozo_image = loadImage("pozo")
   
@@ -22,6 +23,8 @@ function game:init()
   self.jumpsound = love.audio.newSource("assets/audio/jump.ogg", "static")
   self.diesound = love.audio.newSource("assets/audio/scream.ogg", "static")
   self.music = love.audio.newSource("assets/audio/music.ogg")
+  
+  self.obstacle_speed = 200
 end
 
 function game:enter()
@@ -68,7 +71,7 @@ function game:update(dt)
       playedsound = false
       
       game.obstacle:continue()
-      if self.obstacle.x < -175 then
+      if self.obstacle.x < -190 then
         self.obstacle = spawn_obstacle()
         self.word = nil
         self.word = get_word(self.lines)
@@ -81,6 +84,23 @@ function game:update(dt)
     self.background:update(dt)
     
     self.puntos = self.puntos + dt
+    
+    local pt = math.floor(self.puntos)
+    if pt == 20 then
+      self.lines = load_file(2)
+    elseif pt == 50 then
+      self.lines = load_file(3)
+    end
+    
+    if pt == 80 then
+      self.obstacle_speed = 300
+    elseif pt == 110 then
+      self.obstacle_speed = 400
+    elseif pt == 150 then
+      self.obstacle_speed = 550
+    elseif pt == 180 then
+      self.obstacle_speed = 650
+    end
   end
   
   if self.player.vidas <= 0 then
@@ -124,13 +144,18 @@ function game:keypressed(key)
 end
 
 function spawn_obstacle()
-  return Obstacle(love.graphics.getWidth()+100, 483, game.pozo_image)
+  return Obstacle(love.graphics.getWidth(), 486, game.obstacle_speed, game.pozo_image)
 end
 
 function load_file(level)
   local fname = ""
+  
   if level == 1 then
     fname = "assets/data/facil.txt"
+  elseif level == 2 then
+    fname = "assets/data/medio.txt"
+  elseif level == 3 then
+    fname = "assets/data/dificil.txt"
   end
   
   local file = io.open(fname, "rb")

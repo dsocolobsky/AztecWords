@@ -12,7 +12,7 @@ function love.load()
 	Gamestate.registerEvents()
 	Gamestate.switch(menu)
 
-	love.window.setMode(1024, 768)
+	love.window.setMode(1024, 600)
   love.window.setTitle("Aztec Words")
 end
 

@@ -1,16 +1,16 @@
 Class = require "hump.class"
 
 Obstacle = Class {
-  init = function(self, x, y, image)
+  init = function(self, x, y, speed, image)
     self.x = x
     self.y = y
+    self.speed = speed
     self.image = image
     self.hidden = false
   end,
   
   width = 173,
   height = 45,
-  speed = 200,
 }
 
 function Obstacle:update(dt)
