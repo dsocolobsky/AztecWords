@@ -9,7 +9,11 @@ Letter = Class {
     self.strlength = string.len(str)
     
     self.status = 0
-  end,
+  end;
+
+  __tostring = function(self)
+    return self.str
+  end;
 }
 
 function Letter:update(dt)
@@ -18,14 +22,13 @@ end
 
 function Letter:draw()
   if self.status == 1 then
-    love.graphics.setColor(0, 255, 0, 255)
+    love.graphics.setColor(0, 1, 0, 1)
   elseif self.status == -1 then
-    love.graphics.setColor(255, 0, 0, 255)
+    love.graphics.setColor(1, 0, 0, 1)
   end
   
   love.graphics.print(self.str, self.x, self.y)
-  
-  love.graphics.setColor(255, 255, 255, 255)
+  love.graphics.setColor(1, 1, 1, 1)
 end
 
 Word = Class {
@@ -34,14 +37,18 @@ Word = Class {
       self.letters = {}
       self.status = 0
       self.current = 1
+
+      self.x = 300
+      self.y = 500
       
       for i = 1, string.len(str) do
         table.insert(self.letters, Letter(self.x + ((i-1)*32), self.y, string.sub(str, i, i)))
       end
-    end,
-    
-    x = 348,
-    y = 674,
+    end;
+
+    __tostring = function(self)
+      return self.str
+    end;    
 }
 
 function Word:update(dt)

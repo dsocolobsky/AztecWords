@@ -116,10 +116,9 @@ function game:draw()
   self.background:draw()
   
   self.player:draw()
-  
+
   love.graphics.draw(self.hud_image, 0, 0)
-  
-  self.word:draw()
+
   
   if self.obstacle ~= nil then
     self.obstacle:draw()
@@ -136,7 +135,10 @@ function game:draw()
     love.graphics.draw(self.corazon, 940, 33)
   end
   
+  
   love.graphics.print(math.floor(self.puntos), 78, 20)
+
+  self.word:draw()
 end
 
 function game:keypressed(key)
@@ -159,8 +161,9 @@ function load_file(level)
   end
   
   local file = io.open(fname, "rb")
+  if file == nil then print("File was nil") end
+
   local ln = {}
-  
   for line in io.lines(fname) do
     ln[#ln + 1] = line
   end
