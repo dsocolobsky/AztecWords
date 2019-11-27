@@ -22,7 +22,7 @@ function game:init()
   -- Sonidos
   self.jumpsound = love.audio.newSource("assets/audio/jump.ogg", "static")
   self.diesound = love.audio.newSource("assets/audio/scream.ogg", "static")
-  self.music = love.audio.newSource("assets/audio/music.ogg")
+  self.music = love.audio.newSource("assets/audio/music.ogg", "stream")
   
   self.obstacle_speed = 200
 end
