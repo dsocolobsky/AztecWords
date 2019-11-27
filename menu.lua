@@ -4,31 +4,28 @@ menu = {}
 soundactivated = true
 
 function menu:init()
-	-- Fondo del menu
-	self.background = loadImage("menu")
-  
-  -- Logo del juego
+	self.background = loadImage("menuback")  
   self.logo = loadImage("logo")
 
-	-- Botones grandes
 	self.botonjugar = Button(660, 400, loadImage("botonjugar"))
-	self.botonsalir = Button(660, 560, loadImage("botonsalir"))
+  self.botonsalir = Button(660, 560, loadImage("botonsalir"))
   
-  -- Botones chicos
-  self.botonsonido = SmallButton(40, 26, loadImage("soundon"), loadImage("soundoff"))
-  self.botonventana = SmallButton(180, 26, loadImage("botonfullscreen"), loadImage("botonwindowed"))
+  self.botonsonido = SmallButton(40, 26, loadImage("sonido-on"), loadImage("sonido-off"))
+  self.botonventana = SmallButton(180, 26, loadImage("pantalla-completa"), loadImage("pantalla-ventana"))
 end
 
 function menu:update(dt)
 	self.botonjugar:update(dt)
-	self.botonsalir:update(dt)
-  
+  self.botonsalir:update(dt)
   self.botonsonido:update(dt)
   self.botonventana:update(dt)
 end
 
-function menu:mousepressed(x, y, button)
-  if button ~= 'l' then
+function menu:mousereleased(x, y, button)
+  print(string.format("button: %d\n", button))
+
+  -- if right click ignore
+  if button ~= 1 then
     return
   end
   

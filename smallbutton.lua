@@ -16,9 +16,9 @@ SmallButton = Class { __includes = Button,
 function SmallButton:draw()
 	-- Si el boton esta seleccionado, hacerlo mas brillante
 	if self.hovered then
-		love.graphics.setColor(255, 255, 255, 255)
+		love.graphics.setColor(1, 1, 1, 1)
 	else
-		love.graphics.setColor(255-self.darken, 255-self.darken, 255-self.darken, 255)
+		love.graphics.setColor(1-self.darken, 1-self.darken, 1-self.darken, 1)
 	end
 
 	-- Renderizar el boton dependiendo que boton mostrar
@@ -29,7 +29,7 @@ function SmallButton:draw()
   end
   
 	-- Resetear el color
-	love.graphics.setColor(255, 255, 255, 255)
+	love.graphics.setColor(1, 1, 1, 1)
 end
 
 function SmallButton:activate()

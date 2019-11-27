@@ -11,7 +11,7 @@ Button = Class {
 	end,
 	hovered = false, -- Pasamos el mouse arriba
 	clicked = false, -- Hicimos click
-	darken = 95 -- Cuanto oscurecemos el boton
+	darken = 0.15 -- Cuanto oscurecemos el boton
 }
 
 function Button:update(dt)
@@ -19,6 +19,7 @@ function Button:update(dt)
 
 	-- El mouse esta arriba del boton
 	if mx > self.x and mx < self.ex and my > self.y and my < self.ey then
+		print("Hovered")
 		self.hovered = true
 	else
 		self.hovered = false
@@ -28,9 +29,9 @@ end
 function Button:draw()
 	-- Si el boton esta seleccionado, hacerlo mas brillante
 	if self.hovered then
-		love.graphics.setColor(255, 255, 255, 255)
+		love.graphics.setColor(1, 1, 1, 1)
 	else
-		love.graphics.setColor(255-self.darken, 255-self.darken, 255-self.darken, 255)
+		love.graphics.setColor(1-self.darken, 1-self.darken, 1-self.darken, 1)
 	end
 
 	-- Renderizar el boton

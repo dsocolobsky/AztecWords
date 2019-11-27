@@ -5,6 +5,7 @@ require("button")
 require("smallbutton")
 
 local sound = true
+io.stdout:setvbuf("no")
 
 function love.load()
   if arg[#arg] == "-debug" then require("mobdebug").start() end
@@ -13,7 +14,7 @@ function love.load()
 	Gamestate.switch(menu)
 
 	love.window.setMode(1024, 600)
-  love.window.setTitle("Aztec Words")
+	love.window.setTitle("Aztec Words")
 end
 
 function loadImage(filename)
