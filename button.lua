@@ -1,4 +1,4 @@
-Class = require "hump.class"
+Class = require "lib/hump.class"
 
 Button = Class {
 	init = function(self, x, y, img)

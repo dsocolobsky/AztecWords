@@ -1,4 +1,4 @@
-Class = require "hump.class"
+Class = require "lib/hump.class"
 require("button")
 
 SmallButton = Class { __includes = Button,

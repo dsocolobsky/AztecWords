@@ -4,13 +4,13 @@ require("obstacle")
 require("player")
 require("word")
 
-Gamestate = require "hump.gamestate"
+Gamestate = require "lib/hump.gamestate"
 game = {}
 
 function game:init()
   self.background = Background(loadImage("back1"), loadImage("back2"), loadImage("back3"),
     loadImage("back4"))
-  self.hud_image = loadImage("nuevohud")
+  self.hud_image = loadImage("hud")
   
   self.pozo_image = loadImage("pozo")
   

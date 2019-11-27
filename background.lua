@@ -1,4 +1,4 @@
-Class = require "hump.class"
+Class = require "lib/hump.class"
 
 Background = Class {
   init = function(self, image1, image2, image3, image4)

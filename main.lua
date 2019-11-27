@@ -1,4 +1,4 @@
-Gamestate = require "hump.gamestate"
+Gamestate = require "lib/hump.gamestate"
 require("menu")
 require("game")
 require("button")
@@ -13,7 +13,7 @@ function love.load()
 	Gamestate.registerEvents()
 	Gamestate.switch(menu)
 
-	love.window.setMode(1024, 600)
+	love.window.setMode(1024, 768)
 	love.window.setTitle("Aztec Words")
 end
 

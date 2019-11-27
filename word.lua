@@ -1,4 +1,4 @@
-Class = require "hump.class"
+Class = require "lib/hump.class"
 
 Letter = Class {
   init = function(self, x, y, str)
@@ -38,8 +38,8 @@ Word = Class {
       self.status = 0
       self.current = 1
 
-      self.x = 300
-      self.y = 500
+      self.x = 280
+      self.y = 674
       
       for i = 1, string.len(str) do
         table.insert(self.letters, Letter(self.x + ((i-1)*32), self.y, string.sub(str, i, i)))

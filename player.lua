@@ -1,5 +1,5 @@
-Class = require "hump.class"
-local anim8 = require 'anim8'
+Class = require "lib/hump.class"
+local anim8 = require 'lib/anim8'
 
 Player = Class {
   init = function(self, x, y, image)

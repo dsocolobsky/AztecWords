@@ -1,4 +1,4 @@
-Class = require "hump.class"
+Class = require "lib/hump.class"
 
 Obstacle = Class {
   init = function(self, x, y, speed, image)

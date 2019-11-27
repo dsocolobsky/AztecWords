@@ -1,4 +1,4 @@
-Gamestate = require "hump.gamestate"
+Gamestate = require "lib/hump.gamestate"
 gameover = {}
 
 function gameover:init()
