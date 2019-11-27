@@ -39,7 +39,7 @@ function menu:mousereleased(x, y, button)
   elseif self.botonventana.hovered then
     self.botonventana:activate()
     fullscreen, fstype = love.window.getFullscreen()
-    love.window.setFullscreen(not fullscreen, "normal")
+    love.window.setFullscreen(not fullscreen, "exclusive")
   end
 end
 
